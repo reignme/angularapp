@@ -1,35 +1,40 @@
 import { Component } from '@angular/core';
+import { Customer } from './Customer';
 
 @Component({
     selector: 'app-sandbox',
     template: `
-        <h1>{{ name }} is {{ age }} years old</h1>
-        <h2>My name is {{ person.firstName }} {{ person.lastName}}</h2>
-        <ul>
-            <li>{{ 'Hello World' }}</li>
-            <li>{{ 1+1 }}</li>
-            <li>{{ showAge() }}</li>
-        </ul>
+        <h1>Hello</h1>
     `
 })
 
 export class SandboxComponent {
-    name = 'Woosuk Chang';
-    age = 45;
-    person = { firstName: 'Chloe', lastName: 'Chang'};
+    customer:Customer;
+    customers:Customer[];
 
     constructor() {
-        console.log('Constuctor ran...');
-        // this.age = 10;
+        this.customer = {
+            id:1,
+            name:'Woosuk Chang',
+            email:'woosuk.chang@gmail.com'
+        }
 
-        this.hasBirthday();
-    }
-
-    hasBirthday() {
-        this.age += 1;
-    }
-
-    showAge() {
-        return this.age;
+        this.customers = [
+            {
+                id:1,
+                name:'Woosuk Chang',
+                email:'woosuk.chang@gmail.com'
+            },
+            {
+                id:2,
+                name:'Enukyung Chang',
+                email:'woosuk.chang@gmail.com'
+            },
+            {
+                id:3,
+                name:'Sunjin Chang',
+                email:'woosuk.chang@gmail.com'
+            }            
+        ];
     }
 }
