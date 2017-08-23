@@ -1,35 +1,25 @@
 import { Component } from '@angular/core';
+import { DataService } from '../services/data.service';
 
 @Component({
     selector: 'app-sandbox',
     template: `
-        <h1>{{ name }} is {{ age }} years old</h1>
-        <h2>My name is {{ person.firstName }} {{ person.lastName}}</h2>
-        <ul>
-            <li>{{ 'Hello World' }}</li>
-            <li>{{ 1+1 }}</li>
-            <li>{{ showAge() }}</li>
+        <h1>Hello World</h1>
+        <ul class="list-group">
+            <li class="list-group-item" *ngFor="let d of data">{{d}}</li>
         </ul>
     `
 })
 
 export class SandboxComponent {
-    name = 'Woosuk Chang';
-    age = 45;
-    person = { firstName: 'Chloe', lastName: 'Chang'};
+    data:any[] = [];
 
-    constructor() {
-        console.log('Constuctor ran...');
-        // this.age = 10;
-
-        this.hasBirthday();
+    constructor(public dataService:DataService) {
+        this.dataService.getData().subscribe(data => {
+            console.log(data);
+            this.data.push(data);
+        });
     }
 
-    hasBirthday() {
-        this.age += 1;
-    }
 
-    showAge() {
-        return this.age;
-    }
 }
